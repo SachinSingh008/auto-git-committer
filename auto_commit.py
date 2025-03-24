@@ -4,10 +4,9 @@ import time
 from datetime import datetime
 
 # List of multiple Git repositories
-repo_path = [
-    r"C:/Users/rites/Desktop/Python AIML/auto-git-committer",
-    r"C:/Users/rites/Desktop/Python AIML/laptop-price-predictor-regression-project-main",
-    r"C:/Users/rites/Desktop/Python AIML/Price Predictor"
+repo_paths = [
+    r"C:/Users/rites/Desktop/Python AIML/Price Predictor",
+    r"C:/Users/rites/Desktop/WebPages/SIH-chatbotDoJ"
 ]
 
 # Random commit messages
@@ -33,12 +32,10 @@ def make_commit(repo_path):
     os.system(f'git commit -m "{commit_message}"')
     os.system("git push origin main")
 
-# Distribute commits across repositories
+# Distribute commits across repositories (randomly selecting a repo for each commit)
 for _ in range(total_commits):
-    selected_repo = random.choice(repo_path)  # Pick a random repo
+    selected_repo = random.choice(repo_paths)  # Pick a random repo
     make_commit(selected_repo)
     time.sleep(random.randint(1, 5))  # Add slight delay for randomness
 
-print("✅ Commits distributed across repositories successfully!")
-
-    
+print(f"✅ {total_commits} commits distributed across repositories successfully!")
