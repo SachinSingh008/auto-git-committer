@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 
 # Set your repository path (update this)
-repo_path = "/path/to/your/repository"
+repo_path = "C:/Users/rites/Desktop/Python AIML/auto-git-committer"
 
 # Load commit messages from a file
 with open("commit_messages.txt", "r") as f:
@@ -17,8 +17,7 @@ def make_commit():
     # Modify a file (log file to track commits)
     filename = "auto_commit_log.txt"
     with open(filename, "a") as f:
-        f.write(f"Commit at {datetime.now()}
-")
+        f.write(f"Commit at {datetime.now()}")
 
     # Git commands
     os.system("git add .")
@@ -30,6 +29,5 @@ def make_commit():
 commit_count = random.randint(12, 20)
 intervals = sorted(random.sample(range(24 * 60 * 60), commit_count)) # Random times in a day
 
-for interval in intervals:
-    time.sleep(interval)  # Sleep until next commit
+for _ in range(commit_count):
     make_commit()
