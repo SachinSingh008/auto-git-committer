@@ -3,31 +3,42 @@ import random
 import time
 from datetime import datetime
 
-# Set your repository path (update this)
-repo_path = "C:/Users/rites/Desktop/Python AIML/auto-git-committer"
+# List of multiple Git repositories
+repo_path = [
+    r"C:/Users/rites/Desktop/Python AIML/auto-git-committer",
+    r"C:/Users/rites/Desktop/Python AIML/laptop-price-predictor-regression-project-main",
+    r"C:/Users/rites/Desktop/Python AIML/Price Predictor"
+]
 
-# Load commit messages from a file
-with open("commit_messages.txt", "r") as f:
-    commit_messages = f.readlines()
-commit_messages = [msg.strip() for msg in commit_messages]
+# Random commit messages
+commit_messages = [
+    "Minor update", "Fixed bug", "Improved performance", "Updated README",
+    "Refactored code", "Code cleanup", "Added new feature", "Optimized logic"
+]
 
-def make_commit():
-    os.chdir(repo_path)
-    
-    # Modify a file (log file to track commits)
-    filename = "auto_commit_log.txt"
+# Generate a random number of commits (between 12-20)
+total_commits = random.randint(12, 20)
+
+def make_commit(repo_path):
+    """Commits a random update to the selected repo."""
+    os.chdir(repo_path)  # Change directory to the repo
+    print(f"📌 Making a commit in: {repo_path} at {datetime.now()}...")
+
+    filename = os.path.join(repo_path, "auto_commit_log.txt")
     with open(filename, "a") as f:
-        f.write(f"Commit at {datetime.now()}")
+        f.write(f"Commit at {datetime.now()}\n")
 
-    # Git commands
     os.system("git add .")
     commit_message = random.choice(commit_messages)
     os.system(f'git commit -m "{commit_message}"')
     os.system("git push origin main")
 
-# Generate random commit times (12-20 times a day)
-commit_count = random.randint(12, 20)
-intervals = sorted(random.sample(range(24 * 60 * 60), commit_count)) # Random times in a day
+# Distribute commits across repositories
+for _ in range(total_commits):
+    selected_repo = random.choice(repo_path)  # Pick a random repo
+    make_commit(selected_repo)
+    time.sleep(random.randint(1, 5))  # Add slight delay for randomness
 
-for _ in range(commit_count):
-    make_commit()
+print("✅ Commits distributed across repositories successfully!")
+
+    
