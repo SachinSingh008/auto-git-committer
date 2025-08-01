@@ -6,7 +6,9 @@ from datetime import datetime
 # List of multiple Git repositories
 repo_paths = [
     r"C:/Users/rites/Desktop/Python AIML/Price Predictor",
-    r"C:/Users/rites/Desktop/WebPages/SIH-chatbotDoJ"
+    r"C:/Users/rites/Desktop/WebPages/SIH-chatbotDoJ",
+    r"C:/Users/rites/Desktop/Python AIML/data analyzer/ai-data-analyst",
+    r"C:/Users/rites/Desktop/Python AIML/auto-git-committer"
 ]
 
 # Random commit messages
